@@ -98,6 +98,11 @@ The AI model integration, deployment, CV Builder, and AI Roadmap Generator are p
 
 ---
 
+## PROJECT INSTALLER and Running
+
+- npm install
+- npm run dev
+
 ## 📁 Project Structure
 
 ```txt
