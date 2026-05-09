@@ -16,7 +16,7 @@ function DashboardResult({ result }) {
     return (
         <section className="result-dashboard" id="result-dashboard">
             <div className="section-heading result-heading">
-                <span className="section-kicker">Result Analyzei</span>
+                <span className="section-kicker">Analysis Result</span>
                 <h2 className="upload-title">Your resume match report</h2>
                 <p>
                     Review your ATS score, matched skills, missing keywords, and next steps
