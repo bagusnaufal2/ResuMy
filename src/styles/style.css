@@ -14,6 +14,18 @@
   --upload-max: 820px;
 }
 
+/* Tambahan untuk Light/Dark Mode */
+body.dark {
+  --surface: #171717;
+  --surface-soft: #1f1f1f;
+  --card: #252525;
+  --text: #f5f5f5;
+  --muted: #b5b5b5;
+  --line: #3b3b3b;
+  --line-dark: #4a4a4a;
+  --accent: #ffffff;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -24,6 +36,10 @@ body {
   background: var(--bg-dark);
   font-family: Arial, sans-serif;
   color: var(--text);
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
 #root {
@@ -71,7 +87,8 @@ a {
   color: var(--muted);
 }
 
-.nav-menu a, p {
+.nav-menu a,
+p {
   display: inline-flex;
   align-items: center;
   padding: 8px 10px;
@@ -81,8 +98,31 @@ a {
 }
 
 .nav-menu a:hover {
-  background: #111111;
-  color: #ffffff;
+  background: var(--text);
+  color: var(--surface);
+}
+
+/* Tambahan Light/Dark Mode */
+.theme-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  color: var(--text);
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.theme-btn:hover {
+  background: var(--text);
+  color: var(--surface);
 }
 
 .hero {
@@ -100,11 +140,12 @@ a {
 .badge {
   display: inline-block;
   padding: 5px 12px;
-  border: 1px solid #8e8e8e;
+  border: 1px solid var(--line);
   border-radius: 999px;
   font-size: 11px;
   margin-bottom: 14px;
-  background: #f5f5f5;
+  background: var(--surface-soft);
+  color: var(--text);
 }
 
 .hero h2 {
@@ -136,17 +177,20 @@ a {
   font-size: 13px;
   border: 1px solid #9d9d9d;
   border-radius: 4px;
-  background: white;
-  cursor: pointer;
+  background: var(--surface);
   color: var(--text);
+  cursor: pointer;
   text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .primary-button:hover {
-  background: #111111;
-  color: #ffffff;
-  border-color: #111111;
+  background: var(--text);
+  color: var(--surface);
+  border-color: var(--text);
 }
 
 .primary-button:disabled {
@@ -178,13 +222,16 @@ a {
   text-decoration: none;
   border: 1px solid transparent;
   border-radius: 4px;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .secondary-link:hover {
-  background: #111111;
-  color: #ffffff;
-  border-color: #111111;
+  background: var(--text);
+  color: var(--surface);
+  border-color: var(--text);
 }
 
 .content-section {
@@ -249,10 +296,10 @@ a {
   height: 46px;
   font-size: 28px;
   margin-bottom: 14px;
-  color: #222;
+  color: var(--text);
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--surface);
 }
 
 .featured-icon svg,
@@ -273,7 +320,7 @@ a {
 .tech-card p {
   font-size: 13px;
   line-height: 1.55;
-  color: #333;
+  color: var(--text);
 }
 
 .upload-section {
@@ -303,20 +350,23 @@ a {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .upload-box:hover,
 .upload-box:focus-within {
   transform: translateY(-3px);
-  border-color: #111111;
-  background: #ffffff;
+  border-color: var(--text);
+  background: var(--surface);
 }
 
 .upload-box:hover .upload-icon,
 .upload-box:focus-within .upload-icon {
   transform: scale(1.06);
-  color: #111111;
+  color: var(--text);
 }
 
 .upload-icon {
@@ -325,14 +375,16 @@ a {
   justify-content: center;
   font-size: 52px;
   margin-bottom: 14px;
-  color: #222;
-  transition: color 0.2s ease, transform 0.2s ease;
+  color: var(--text);
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .upload-box p {
   font-size: 13px;
   line-height: 1.5;
-  color: #333;
+  color: var(--text);
 }
 
 .upload-box strong {
@@ -342,7 +394,7 @@ a {
 .file-name {
   margin-top: 12px;
   font-size: 12px;
-  color: #444;
+  color: var(--muted);
   word-break: break-word;
   max-width: 100%;
 }
@@ -363,16 +415,17 @@ a {
   border-top: 1px solid #d6d6d6;
 }
 
-.tech-strip-label {
+/* Ini dihapus karena komponennya aku hapus */
+/* .tech-strip-label {
   font-size: 13px;
   color: var(--muted);
   margin-bottom: 8px;
-}
+} */
 
 .tech-strip-description {
   max-width: 620px;
   margin: 0 auto 16px;
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.5;
   color: var(--muted);
 }
@@ -405,7 +458,7 @@ a {
   font-size: 34px;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--surface);
 }
 
 .tech-logo-icon svg {
@@ -482,9 +535,13 @@ a {
   margin: 0 auto;
   border-radius: 50%;
   background:
-    radial-gradient(circle at center, var(--surface-soft) 0 52%, transparent 53%),
-    conic-gradient(#111111 var(--score-value), #dedede 0);
-  border: 4px solid #111111;
+    radial-gradient(
+      circle at center,
+      var(--surface-soft) 0 52%,
+      transparent 53%
+    ),
+    conic-gradient(var(--text) var(--score-value), var(--line) 0);
+  border: 4px solid var(--text);
 }
 
 .score-circle::before {
@@ -492,7 +549,7 @@ a {
   position: absolute;
   width: 88px;
   height: 88px;
-  border: 4px solid #111111;
+  border: 4px solid var(--text);
   border-radius: 50%;
   background: var(--surface-soft);
 }
@@ -549,9 +606,9 @@ a {
   min-width: 118px;
   padding: 10px 16px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--surface);
+  color: var(--text);
   border: 1px solid var(--line);
-  color: #111111;
   font-size: 14px;
   font-weight: 700;
 }
@@ -564,7 +621,7 @@ a {
   display: grid;
   gap: 12px;
   padding-left: 18px;
-  color: #333;
+  color: var(--text);
   font-size: 14px;
   line-height: 1.5;
 }
