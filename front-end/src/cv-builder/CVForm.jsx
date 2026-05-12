@@ -37,9 +37,12 @@ function CVForm({ cvData, setCvData }) {
         }));
     };
 
-    const handleCertificationChange = (index, value) => {
+    const handleCertificationChange = (index, field, value) => {
         const newCertifications = [...cvData.certifications];
-        newCertifications[index] = value;
+        newCertifications[index] = {
+            ...newCertifications[index],
+            [field]: value,
+        };
 
         setCvData((prevData) => ({
             ...prevData,
@@ -50,7 +53,16 @@ function CVForm({ cvData, setCvData }) {
     const addCertification = () => {
         setCvData((prevData) => ({
             ...prevData,
-            certifications: [...prevData.certifications, ""],
+            certifications: [
+                ...prevData.certifications,
+                {
+                    name: "",
+                    startDate: "",
+                    endDate: "",
+                    isCurrent: false,
+                    description: "",
+                },
+            ],
         }));
     };
 
@@ -77,6 +89,7 @@ function CVForm({ cvData, setCvData }) {
                     role: "",
                     startDate: "",
                     endDate: "",
+                    isCurrent: false,
                     description: "",
                 },
             ],
@@ -104,8 +117,10 @@ function CVForm({ cvData, setCvData }) {
                 {
                     school: "",
                     major: "",
+                    gpa: "",
                     startDate: "",
                     endDate: "",
+                    isCurrent: false,
                     description: "",
                 },
             ],
@@ -212,17 +227,24 @@ function CVForm({ cvData, setCvData }) {
                                 onChange={(e) => handleExperienceChange(index, "role", e.target.value)}
                             />
                             <input
-                                type="text"
-                                placeholder="Start Date"
+                                type="date"
                                 value={exp.startDate}
                                 onChange={(e) => handleExperienceChange(index, "startDate", e.target.value)}
                             />
                             <input
-                                type="text"
-                                placeholder="End Date"
+                                type="date"
                                 value={exp.endDate}
+                                disabled={exp.isCurrent}
                                 onChange={(e) => handleExperienceChange(index, "endDate", e.target.value)}
                             />
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={exp.isCurrent}
+                                    onChange={(e) => handleExperienceChange(index, "isCurrent", e.target.checked)}
+                                />
+                                Present
+                            </label>
                             <textarea
                                 placeholder="Description (Optional)"
                                 value={exp.description}
@@ -256,16 +278,29 @@ function CVForm({ cvData, setCvData }) {
                             />
                             <input
                                 type="text"
-                                placeholder="Start Date"
+                                placeholder="GPA"
+                                value={edu.gpa}
+                                onChange={(e) => handleEducationChange(index, "gpa", e.target.value)}
+                            />
+                            <input
+                                type="date"
                                 value={edu.startDate}
                                 onChange={(e) => handleEducationChange(index, "startDate", e.target.value)}
                             />
                             <input
-                                type="text"
-                                placeholder="End Date"
+                                type="date"
                                 value={edu.endDate}
+                                disabled={edu.isCurrent}
                                 onChange={(e) => handleEducationChange(index, "endDate", e.target.value)}
                             />
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={edu.isCurrent}
+                                    onChange={(e) => handleEducationChange(index, "isCurrent", e.target.checked)}
+                                />
+                                Present
+                            </label>
                             <textarea
                                 placeholder="Description (Optional)"
                                 value={edu.description}
@@ -314,8 +349,32 @@ function CVForm({ cvData, setCvData }) {
                             <input
                                 type="text"
                                 placeholder="Certificate Name"
-                                value={certificate}
-                                onChange={(e) => handleCertificationChange(index, e.target.value)}
+                                value={certificate.name}
+                                onChange={(e) => handleCertificationChange(index, "name", e.target.value)}
+                            />
+                            <input
+                                type="date"
+                                value={certificate.startDate}
+                                onChange={(e) => handleCertificationChange(index, "startDate", e.target.value)}
+                            />
+                            <input
+                                type="date"
+                                value={certificate.endDate}
+                                disabled={certificate.isCurrent}
+                                onChange={(e) => handleCertificationChange(index, "endDate", e.target.value)}
+                            />
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={certificate.isCurrent}
+                                    onChange={(e) => handleCertificationChange(index, "isCurrent", e.target.checked)}
+                                />
+                                Present
+                            </label>
+                            <textarea
+                                placeholder="Description (Optional)"
+                                value={certificate.description}
+                                onChange={(e) => handleCertificationChange(index, "description", e.target.value)}
                             />
                         </div>
                     ))}

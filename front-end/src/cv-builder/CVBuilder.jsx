@@ -18,13 +18,22 @@ function CVBuilder() {
             description: "",
         },
     ],
-    certifications: [""],
+    certifications: [
+        {
+            name: "",
+            startDate: "",
+            endDate: "",
+            isCurrent: false,
+            description: "",
+        },
+    ],
     experience: [
         {
             company: "",
             role: "",
             startDate: "",
             endDate: "",
+            isCurrent: false,
             description: "",
         },
     ],
@@ -32,8 +41,10 @@ function CVBuilder() {
         {
             school: "",
             major: "",
+            gpa: "",
             startDate: "",
             endDate: "",
+            isCurrent: false,
             description: "",
         },
     ],
@@ -42,6 +53,7 @@ function CVBuilder() {
 const handleDownloadCV = () => {
     window.print();
 };
+
 
     return (
         <div className="cv-builder-page">

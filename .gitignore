@@ -12,7 +12,7 @@ dist
 dist-ssr
 *.local
 .env
-.cv-builder
+cv-builder
 
 # Editor directories and files
 .vscode/*
