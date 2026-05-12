@@ -11,11 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
-<<<<<<< HEAD
 .env
 cv-builder
-=======
->>>>>>> 22bb218 (Front End)
+
 
 # Editor directories and files
 .vscode/*
