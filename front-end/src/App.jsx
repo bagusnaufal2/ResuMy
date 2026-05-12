@@ -24,34 +24,30 @@ function App() {
       setIsAnalyzing(true);
       setAnalyzeError("");
 
-      const mockResult = await Promise.resolve({
-        score: 75,
-        skillsHave: [
-          "Node.js",
-          "REST API",
-          "PostgreSQL",
-          "Express.js",
-          "Docker",
-        ],
-        skillsMissing: ["Kubernetes", "Redis", "gRPC"],
-        improvements: [
-          "Tambahkan keyword yang relevan dengan job description.",
-          "Perjelas pengalaman backend pada project section.",
-          "Tambahkan skill yang sering dicari recruiter.",
-          "Rapikan format CV agar lebih ATS-friendly.",
-        ],
-      });
+     const formData = new FormData();
+     formData.append("resume", file);
 
-      setResult(mockResult);
-      sessionStorage.setItem(RESULT_STORAGE_KEY, JSON.stringify(mockResult));
-      navigate("/result");
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } catch {
-      setAnalyzeError("Resume analysis failed. Please try again.");
+     const response = await fetch("http://localhost:5000/api/analyze", {
+        method: "POST",
+        body: formData,
+     });
+
+     const result = await response.json();
+
+     if (!response.ok) {
+        throw new Error(result.message || "Analysis failed.");
+     }
+
+     setResult(result.data);
+     sessionStorage.setItem(RESULT_STORAGE_KEY, JSON.stringify(result.data));
+     navigate("/result");
+     window.scrollBy({top:0, behavior: "smooth"});
+
+    } catch (error) {
+      setAnalyzeError(error.message);
     } finally {
       setIsAnalyzing(false);
-    }
-  }
+    }}
 
   return (
     <div className="App">
