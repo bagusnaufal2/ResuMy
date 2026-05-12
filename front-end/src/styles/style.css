@@ -758,3 +758,381 @@ a {
     width: 100%;
   }
 }
+
+.cv-builder-page {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px 32px 72px;
+}
+
+.cv-builder-layout {
+  display: grid;
+    grid-template-columns: 520px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.cv-builder-form-panel,
+.cv-builder-preview-panel {
+  background: var(--card);
+  border: 1px solid var(--line-dark);
+  border-radius: 10px;
+  padding: 24px;
+}
+
+
+
+.cv-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: Arial, sans-serif;
+}
+
+.cv-form h2 {
+  font-size: 24px;
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+
+.cv-form-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.cv-form-tabs button {
+  margin-top: 0;
+  font-family: inherit;
+  font-weight: 600;
+}
+
+.cv-form-tabs .cv-form-optional {
+  margin-left: 4px;
+  font-size: 11px;
+}
+
+.cv-form-tabs .active-tab {
+  background: var(--text);
+  color: var(--surface);
+  border-color: var(--text);
+}
+
+.cv-form-tabs .active-tab .cv-form-optional {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.cv-form-section {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.cv-form-section h3 {
+  margin-bottom: 16px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.cv-form-subsection + .cv-form-subsection {
+  margin-top: 16px;
+}
+
+.cv-form-subsection {
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.cv-form-subsection h4 {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cv-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.cv-form-optional {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.cv-form input,
+.cv-form textarea {
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 400;
+}
+
+.cv-form textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.cv-form button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 10px 14px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: var(--surface-soft);
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 600;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.cv-form button:hover {
+  background: var(--text);
+  color: var(--surface);
+  border-color: var(--text);
+}
+
+.cv-preview-paper {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 36px;
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid #d3d3d3;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  font-family: Arial, sans-serif;
+}
+
+.cv-preview-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.cv-preview-header h1 {
+  margin-bottom: 8px;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cv-preview-role {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1f1f1f;
+}
+
+.cv-preview-contact {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #333333;
+}
+
+.cv-preview-section + .cv-preview-section {
+  margin-top: 22px;
+}
+
+.cv-preview-section h2 {
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #bdbdbd;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.cv-preview-section p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #222222;
+}
+
+.cv-preview-entry + .cv-preview-entry {
+  margin-top: 14px;
+}
+
+.cv-preview-entry-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 6px;
+}
+
+.cv-preview-entry-head h3 {
+  margin-bottom: 2px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cv-preview-company {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.cv-preview-entry-head span {
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.cv-preview-paper {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 40px 36px;
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid #d3d3d3;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 900px) {
+  .cv-builder-page {
+    padding: 36px 28px 64px;
+  }
+
+  .cv-builder-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .cv-preview-paper {
+    padding: 28px 22px;
+  }
+
+  .cv-preview-entry-head {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 560px) {
+  .cv-builder-page {
+    padding: 28px 20px 56px;
+  }
+
+  .cv-builder-form-panel,
+  .cv-builder-preview-panel {
+    padding: 18px;
+  }
+
+  .cv-preview-header h1 {
+    font-size: 22px;
+  }
+
+  .cv-preview-paper {
+    padding: 24px 18px;
+  }
+}
+
+.cv-preview-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.cv-preview-list li {
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+
+.cv-preview-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.cv-preview-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: var(--surface-soft);
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 13px;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.cv-preview-actions button:hover {
+  background: var(--text);
+  color: var(--surface);
+  border-color: var(--text);
+}
+
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .cv-builder-preview-panel,
+  .cv-builder-preview-panel * {
+    visibility: visible;
+  }
+
+  .cv-builder-layout {
+    display: block;
+  }
+
+  .cv-builder-form-panel,
+  .cv-preview-actions,
+  .navbar {
+    height: auto;
+  max-height: none;
+  overflow: visible;
+  }
+
+  .cv-builder-preview-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: #fff;
+  }
+
+  .cv-preview-paper {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 20px;
+    border: none;
+    box-shadow: none;
+  }
+  
+  .cv-preview-actions,
+  .cv-preview-actions button {
+    display: none !important;
+  }
+}
+
+
