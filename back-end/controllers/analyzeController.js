@@ -1,31 +1,36 @@
 async function analyzeResume(req, res) {
-  try {
-    return res.json({
-      success: true,
-      data: {
-        score: 75,
-        skillsHave: [
-          "Node.js",
-          "REST API",
-          "PostgreSQL",
-          "Express.js",
-          "Docker",
-        ],
-        skillsMissing: ["Kubernetes", "Redis", "gRPC"],
-        improvements: [
-          "Tambahkan keyword yang relevan dengan job description.",
-          "Perjelas pengalaman backend pada project section.",
-          "Tambahkan skill yang sering dicari recruiter.",
-          "Rapikan format CV agar lebih ATS-friendly.",
-        ],
-      },
-    });
-  } catch (error) {
-    return res.status(500).json({
+try {
+  if (!req.file) {
+    return res.status(400).json({
       success: false,
-      message: "Failed to analyze resume",
-    });
+      message: "Please upload a PDF, DOC, or DOCX file."
+    })
   }
+
+  return res.json({
+    success: true,
+    message: "Resume analyzed successfully.",
+    data: {
+    score: 75,
+    skillsHave: ["Node.js", "Express.js"],
+    skillsMissing: ["React", "SQL"],
+    improvements: [
+      "Tambahkan skill yang belum tercantum.",
+      "Perjelas pengalaman project."
+    ]},
+    file: {
+      originalName: req.file.originalname,
+      mimeType: req.file.mimetype,
+      size: req.file.size,
+    },
+  });
+} catch (error) {
+  console.error(error);
+  return res.status(500).json({
+    success: false,
+    message: "An error occurred while analyzing the resume."
+  });
+}
 }
 
 export default analyzeResume;

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function SkillTags({ skills }) {
+function SkillTags({ skills = [] }) {
     return (
         <div className="skill-tags">
             {skills.map((skill) => (
@@ -56,7 +56,7 @@ function DashboardResult({ result }) {
                     <div className="result-card">
                         <h4>What to improve</h4>
                         <ul className="improvement-list">
-                            {result.improvements.map((item) => (
+                            {(result.improvements || []).map((item) => (
                                 <li key={item}>{item}</li>
                             ))}
                         </ul>
