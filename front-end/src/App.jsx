@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import UploadSection from "./components/UploadSection";
 import DashboardResult from "./components/ResultDashboard";
+import CVBuilder from "./cv-builder/CVBuilder";
+
 import "./styles/style.css";
 
 const RESULT_STORAGE_KEY = "analysis-result";
@@ -66,6 +68,10 @@ function App() {
                 />
               </>
             )}
+          />
+          <Route
+            path="/cv-builder"
+            element={<CVBuilder />}
           />
           <Route
             path="/result"
