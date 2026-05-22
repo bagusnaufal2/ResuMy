@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaCloudUploadAlt, FaNodeJs, FaPython, FaReact } from "react-icons/fa";
 import { SiPostgresql } from "react-icons/si";
 
-const ALLOWED_EXTENSIONS = [".pdf", ".doc", ".docx"];
+const ALLOWED_EXTENSIONS = [".pdf", ".docx"];
 const MAX_FILE_SIZE = 2 * 1024 * 1024;
 
 const techList = [
@@ -31,6 +31,7 @@ const techList = [
 function UploadSection({ onAnalyze, isAnalyzing, analyzeError }) {
   const [file, setFile] = useState(null);
   const [fileError, setFileError] = useState("");
+  const [jobDescription, setJobDescription] = useState("");
 
   function handleFileChange(event) {
     const selectedFile = event.target.files?.[0];
@@ -48,7 +49,7 @@ function UploadSection({ onAnalyze, isAnalyzing, analyzeError }) {
 
     if (!hasValidExtension) {
       setFile(null);
-      setFileError("Please upload a PDF, DOC, or DOCX file.");
+      setFileError("Please upload a PDF or DOCX file.");
       return;
     }
 
@@ -63,8 +64,8 @@ function UploadSection({ onAnalyze, isAnalyzing, analyzeError }) {
   }
 
   function handleAnalyzeClick() {
-    if (file && !fileError && !isAnalyzing) {
-      onAnalyze(file);
+    if (file && jobDescription.trim() && !fileError && !isAnalyzing) {
+      onAnalyze(file, jobDescription.trim());
     }
   }
 
@@ -76,15 +77,15 @@ function UploadSection({ onAnalyze, isAnalyzing, analyzeError }) {
           Upload your resume and get a match report
         </h2>
         <p className="upload-subtitle">
-          Drop a PDF or DOCX file and let ResuMy check ATS compatibility,
-          highlight missing skills, and prepare your next revision.
+          Drop a PDF or DOCX file, match it with a job description, and review
+          the skill gaps before your next revision.
         </p>
       </div>
 
       <label className="upload-box">
         <input
           type="file"
-          accept=".pdf,.doc,.docx"
+          accept=".pdf,.docx"
           onChange={handleFileChange}
           hidden
         />
@@ -97,9 +98,18 @@ function UploadSection({ onAnalyze, isAnalyzing, analyzeError }) {
         <br />
         Input your CV or select it from your computer.
         <br />
-        PDF, DOC, or DOCX up to 2 MB.
+        PDF or DOCX up to 2 MB.
         {file && <span className="file-name">{file.name}</span>}
       </label>
+      <div className="job-description-field">
+        <label htmlFor="job-description">Job description</label>
+        <textarea
+          id="job-description"
+          value={jobDescription}
+          onChange={(event) => setJobDescription(event.target.value)}
+          placeholder="Paste the target job description"
+        />
+      </div>
       {fileError && <p className="form-message error-message">{fileError}</p>}
       {analyzeError && (
         <p className="form-message error-message">{analyzeError}</p>
@@ -109,7 +119,12 @@ function UploadSection({ onAnalyze, isAnalyzing, analyzeError }) {
           className="primary-button"
           type="button"
           onClick={handleAnalyzeClick}
-          disabled={!file || Boolean(fileError) || isAnalyzing}
+          disabled={
+            !file ||
+            !jobDescription.trim() ||
+            Boolean(fileError) ||
+            isAnalyzing
+          }
         >
           {isAnalyzing ? "Analyzing..." : "Analyze Your CV"}
         </button>

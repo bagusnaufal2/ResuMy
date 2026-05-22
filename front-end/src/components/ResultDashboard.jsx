@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 
-function SkillTags({ skills = [] }) {
+function SkillTags({ skills = [], emptyLabel }) {
+    if (!skills.length) {
+        return <p className="empty-result">{emptyLabel}</p>;
+    }
+
     return (
         <div className="skill-tags">
             {skills.map((skill) => (
@@ -19,7 +23,7 @@ function DashboardResult({ result }) {
                 <span className="section-kicker">Analysis Result</span>
                 <h2 className="upload-title">Your resume match report</h2>
                 <p>
-                    Review your ATS score, matched skills, missing keywords, and next steps
+                    Review your ATS match score, CV skills, missing keywords, and next steps
                     before improving your CV.
                 </p>
                 <Link className="secondary-link result-back-button" to="/">
@@ -43,12 +47,18 @@ function DashboardResult({ result }) {
                 <div className="result-left">
                     <div className="result-card">
                         <h4>Skills you have</h4>
-                        <SkillTags skills={result.skillsHave} />
+                        <SkillTags
+                            skills={result.skillsHave}
+                            emptyLabel="No readable technical skills found in the CV."
+                        />
                     </div>
 
                     <div className="result-card">
                         <h4>Skills missing from your CV</h4>
-                        <SkillTags skills={result.skillsMissing} />
+                        <SkillTags
+                            skills={result.skillsMissing}
+                            emptyLabel="No missing job-description skills found."
+                        />
                     </div>
                 </div>
 

@@ -9,6 +9,8 @@ import CVBuilder from "./cv-builder/CVBuilder";
 import "./styles/style.css";
 
 const RESULT_STORAGE_KEY = "analysis-result";
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:5000";
 
 function App() {
   const [result, setResult] = useState(() => {
@@ -19,8 +21,8 @@ function App() {
   const [analyzeError, setAnalyzeError] = useState("");
   const navigate = useNavigate();
 
-  async function handleAnalyze(file) {
-    if (!file) return;
+  async function handleAnalyze(file, jobDescription) {
+    if (!file || !jobDescription) return;
 
     try {
       setIsAnalyzing(true);
@@ -28,8 +30,9 @@ function App() {
 
      const formData = new FormData();
      formData.append("resume", file);
+     formData.append("jobDescription", jobDescription);
 
-     const response = await fetch("http://127.0.0.1:5000/api/analyze", {
+     const response = await fetch(`${API_BASE_URL}/api/analyze`, {
         method: "POST",
         body: formData,
      });
@@ -43,7 +46,7 @@ function App() {
      setResult(result.data);
      sessionStorage.setItem(RESULT_STORAGE_KEY, JSON.stringify(result.data));
      navigate("/result");
-     window.scrollBy({top:0, behavior: "smooth"});
+     window.scrollTo({top:0, behavior: "smooth"});
 
     } catch (error) {
       setAnalyzeError(error.message);

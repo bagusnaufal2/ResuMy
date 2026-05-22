@@ -402,6 +402,38 @@ a {
   justify-content: center;
 }
 
+.job-description-field {
+  width: 100%;
+  max-width: var(--upload-max);
+  margin: 0 auto 18px;
+  text-align: left;
+}
+
+.job-description-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.job-description-field textarea {
+  width: 100%;
+  min-height: 180px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  color: var(--text);
+  resize: vertical;
+  font: inherit;
+  line-height: 1.5;
+}
+
+.job-description-field textarea:focus {
+  outline: 2px solid var(--text);
+  outline-offset: 1px;
+}
+
 .form-message {
   margin: 0 auto 16px;
   font-size: 13px;
@@ -619,6 +651,12 @@ a {
   border: 1px solid var(--line);
   font-size: 14px;
   font-weight: 700;
+}
+
+.empty-result {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
 }
 
 .result-right .result-card {
